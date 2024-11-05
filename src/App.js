@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import ResetPassword from "./components/ResetPassword";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,6 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+
       </Routes>
     </Router>
   );
