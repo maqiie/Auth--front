@@ -42,17 +42,17 @@ axiosInstance.interceptors.response.use(
     // Handle non-2xx responses
     const originalRequest = error.config;
 
-    // Handle 401 Unauthorized errors (e.g., token expiration)
-    if (error.response && error.response.status === 401) {
-      try {
-        // Optionally: refresh token logic here if your backend supports it
+    // // Handle 401 Unauthorized errors (e.g., token expiration)
+    // if (error.response && error.response.status === 401) {
+    //   try {
+    //     // Optionally: refresh token logic here if your backend supports it
 
-        // Redirect to login page if necessary
-        window.location.href = '/login';
-      } catch (err) {
-        console.error('Error refreshing token or redirecting:', err);
-      }
-    }
+    //     // Redirect to login page if necessary
+    //     window.location.href = '/login';
+    //   } catch (err) {
+    //     console.error('Error refreshing token or redirecting:', err);
+    //   }
+    // }
 
     // Global error handling for other status codes
     if (error.response && error.response.data) {

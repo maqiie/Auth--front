@@ -151,6 +151,21 @@ button.secondary:active {
   margin-top: 12px;
   text-align: center;
 }
+.error-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  text-align: center;
+}
+
+.error-alert p {
+  margin: 0;
+  font-size: 14px;
+}
+
 
 /* Responsive design */
 @media (max-width: 480px) {
