@@ -4,7 +4,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "../axiosConfig";
 import axiosInstance from "../axiosConfig";
-import './Login.css';
+import "./Login.css";
 
 const Login = () => {
   const [isRegistering, setIsRegistering] = useState(false);
@@ -35,17 +35,25 @@ const Login = () => {
         startOtpTimer(); // Start timer for OTP
       } else {
         setError("Login failed. Please check your credentials and try again.");
-        toast.error("Login failed. Please check your credentials and try again.");
+        toast.error(
+          "Login failed. Please check your credentials and try again."
+        );
       }
     } catch (error) {
       console.error("Error during login:", error);
       if (error.response) {
         // Handle specific error messages if your API provides them
-        setError(error.response.data.message || "Login failed. Please check your credentials and try again.");
+        setError(
+          error.response.data.message ||
+            "Login failed. Please check your credentials and try again."
+        );
       } else {
         setError("Login failed. Please check your credentials and try again.");
       }
-      toast.error(error.response?.data?.message || "Login failed. Please check your credentials and try again.");
+      toast.error(
+        error.response?.data?.message ||
+          "Login failed. Please check your credentials and try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -128,43 +136,17 @@ const Login = () => {
         toast.error("Failed to resend OTP. Please try again.");
       }
     } else {
-      toast.warning("Please wait for the timer to expire before resending OTP.");
+      toast.warning(
+        "Please wait for the timer to expire before resending OTP."
+      );
     }
   };
 
-  // Handle user registration
-  // const handleRegister = async (event) => {
-  //   event.preventDefault();
-  //   setLoading(true);
-  //   setError("");
-
-  //   try {
-  //     const response = await axios.post("/auth", {
-  //       email,
-  //       password,
-  //       password_confirmation: confirmPassword,
-  //     });
-
-  //     if (response.status === 200) {
-  //       toast.success("Registration successful! You can now log in.");
-  //       setIsRegistering(false);
-  //     } else {
-  //       setError("Registration failed. Please try again.");
-  //       toast.error("Registration failed. Please try again.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error during registration:", error);
-  //     setError("Registration failed. Please try again.");
-  //     toast.error("Registration failed. Please try again.");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const handleRegister = async (event) => {
     event.preventDefault();
     setLoading(true);
     setError("");
-  
+
     try {
       const response = await axios.post("/auth", {
         user: {
@@ -188,19 +170,19 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
+
   const handleForgotPassword = async (event) => {
     event.preventDefault();
     setLoading(true);
     setError("");
-  
+
     try {
       const response = await axiosInstance.post("/auth/password", {
         user: {
           email: email,
         },
       });
-  
+
       if (response.status === 200 || response.status === 303) {
         // Treat 303 as success too
         toast.success("Password reset link has been sent to your email.");
@@ -218,8 +200,6 @@ const Login = () => {
       setLoading(false);
     }
   };
-  
-  
 
   return (
     <div className="container">
@@ -250,11 +230,15 @@ const Login = () => {
               </form>
               <p>
                 Don't have an account?{" "}
-                <span onClick={() => setIsRegistering(true)}>Register here</span>
+                <span onClick={() => setIsRegistering(true)}>
+                  Register here
+                </span>
               </p>
               <p>
                 Forgot your password?{" "}
-                <span onClick={() => setForgotPassword(true)}>Reset password</span>
+                <span onClick={() => setForgotPassword(true)}>
+                  Reset password
+                </span>
               </p>
               {error && <p className="error">{error}</p>}
             </>
@@ -336,7 +320,12 @@ const Login = () => {
                   {loading ? "Verifying..." : "Verify OTP"}
                 </button>
                 <p>
-                  Resend OTP? {canResend ? <span onClick={handleResendOtp}>Click here</span> : `Wait ${timer}s`}
+                  Resend OTP?{" "}
+                  {canResend ? (
+                    <span onClick={handleResendOtp}>Click here</span>
+                  ) : (
+                    `Wait ${timer}s`
+                  )}
                 </p>
               </form>
               {error && <p className="error">{error}</p>}
